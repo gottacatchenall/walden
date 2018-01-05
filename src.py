@@ -39,8 +39,8 @@ def chunks(s, n):
 
 if (len(tweet) > 139):
     for chunk in chunks(tweet, 139):
-        status = api.PostUpdate(line)
+        status = api.PostUpdate(chunk)
         print(status.text)
 else:
-    status = api.PostUpdate(line)
+    status = api.PostUpdate(tweet)
     print(status.text)
