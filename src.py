@@ -29,14 +29,12 @@ f2.close()
 
 
 f2 = open('./linenum.txt', 'w')
-print(linenum)
 if(linenum > len(data)):
     f2.write(str(0))
 else:
     f2.write(str(linenum + 1))
 
 # parse data
-print(len(data))
 tweet = data[linenum]
 
 def chunks(s, n):
