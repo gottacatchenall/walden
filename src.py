@@ -26,7 +26,7 @@ data = f.readlines()
 f.close()
 
 val = random.randint(0, len(data)-1)
-print(data[val])
+line = (data[val])
 
-status = api.PostUpdate('I love python-twitter!')
+status = api.PostUpdate(line)
 print(status.text)
