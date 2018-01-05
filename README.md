@@ -1,39 +1,44 @@
-# node-js-getting-started
+# Python: Getting Started
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+A barebones Django app, which can easily be deployed to Heroku.
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+Make sure you have Python [installed properly](http://install.python-guide.org). Also, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
 
 ```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
+$ git clone git@github.com:heroku/python-getting-started.git
+$ cd python-getting-started
+
+$ pipenv install
+
+$ createdb python_getting_started
+
+$ python manage.py migrate
+$ python manage.py collectstatic
+
+$ heroku local
 ```
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
 ## Deploying to Heroku
 
-```
+```sh
 $ heroku create
 $ git push heroku master
+
+$ heroku run python manage.py migrate
 $ heroku open
 ```
 or
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Documentation
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+For more information about using Python on Heroku, see these Dev Center articles:
 
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+- [Python on Heroku](https://devcenter.heroku.com/categories/python)
