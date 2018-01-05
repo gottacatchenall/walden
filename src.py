@@ -33,6 +33,7 @@ if(linenum > len(data)):
     f2.write(str(0))
 else:
     f2.write(str(linenum + 1))
+f2.close()
 
 # parse data
 tweet = data[linenum]
