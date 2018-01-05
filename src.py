@@ -27,6 +27,7 @@ linenum = int(os.environ.get('line_number'))
 if(linenum > len(data)):
     os.environ['line_number'] = str(0)
 else:
+    print('made it right place')
     os.environ['line_number'] = str(int(linenum) + 1)
 
 # parse data
