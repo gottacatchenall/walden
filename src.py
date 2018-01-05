@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 
 import twitter
-import random
-import os
+#import random
+#import os
 from datetime import datetime
-random.seed(datetime.now())
+#random.seed(datetime.now())
 
 # Get env
 
@@ -13,7 +13,9 @@ csec = os.environ.get('consumer_secret')
 ak = os.environ.get('access_token')
 asec = os.environ.get('access_token_secret')
 
+linenum = os.environ.get('line_number')
 
+os.environ['line_number'] = linenum + 1
 
 api = twitter.Api(consumer_key=ck,
                       consumer_secret=csec,
@@ -25,8 +27,8 @@ f = open('./walden.txt', 'r')
 data = f.readlines()
 f.close()
 
-val = random.randint(0, len(data)-1)
-line = (data[val])
+#val = random.randint(0, len(data)-1)
+line = (data[linenumb])
 
 status = api.PostUpdate(line)
 print(status.text)
