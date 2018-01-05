@@ -2,7 +2,7 @@
 
 import twitter
 #import random
-#import os
+import os
 from datetime import datetime
 #random.seed(datetime.now())
 
