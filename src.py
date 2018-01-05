@@ -22,15 +22,21 @@ f = open('./walden.txt', 'r')
 data = f.readlines()
 f.close()
 
-linenum = int(os.environ.get('line_number'))
+f2 = open('./linenum.txt', 'r')
+linenum = f2.read()
+linenum = int(linenum)
+f2.close()
 
+
+f2 = open('./linenum.txt', 'w')
+print(linenum)
 if(linenum > len(data)):
-    os.environ['line_number'] = str(0)
+    f2.write(str(0))
 else:
-    print('made it right place')
-    os.environ['line_number'] = str(int(linenum) + 1)
+    f2.write(str(linenum + 1))
 
 # parse data
+print(len(data))
 tweet = data[linenum]
 
 def chunks(s, n):
