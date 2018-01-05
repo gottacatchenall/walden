@@ -7,7 +7,6 @@ from datetime import datetime
 #random.seed(datetime.now())
 
 # Get env
-print(os.environ)
 ck = os.environ.get('consumer_key')
 csec = os.environ.get('consumer_secret')
 ak = os.environ.get('access_token')
@@ -39,7 +38,7 @@ def chunks(s, n):
 
 
 if (len(tweet) > 139):
-    for chunk in chunks(nums, 139):
+    for chunk in chunks(tweet, 139):
         status = api.PostUpdate(line)
         print(status.text)
 else:
