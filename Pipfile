@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 django-heroku = "*"
 python-twitter = "*"
+psycopg2 = "*"
 
 [requires]
 
