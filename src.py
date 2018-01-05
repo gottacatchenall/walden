@@ -7,15 +7,11 @@ from datetime import datetime
 #random.seed(datetime.now())
 
 # Get env
-
+print(os.environ)
 ck = os.environ.get('consumer_key')
 csec = os.environ.get('consumer_secret')
 ak = os.environ.get('access_token')
 asec = os.environ.get('access_token_secret')
-
-linenum = os.environ.get('line_number')
-
-os.environ['line_number'] = linenum + 1
 
 api = twitter.Api(consumer_key=ck,
                       consumer_secret=csec,
@@ -27,8 +23,25 @@ f = open('./walden.txt', 'r')
 data = f.readlines()
 f.close()
 
-#val = random.randint(0, len(data)-1)
-line = (data[linenumb])
+linenum = int(os.environ.get('line_number'))
 
-status = api.PostUpdate(line)
-print(status.text)
+if(linenum > len(data)):
+    os.environ['line_number'] = str(0)
+else:
+    os.environ['line_number'] = str(int(linenum) + 1)
+
+# parse data
+tweet = data[linenum]
+
+def chunks(s, n):
+    for start in range(0, len(s), n):
+        yield s[start:start+n]
+
+
+if (len(tweet) > 139):
+    for chunk in chunks(nums, 139):
+        status = api.PostUpdate(line)
+        print(status.text)
+else:
+    status = api.PostUpdate(line)
+    print(status.text)
