@@ -7,7 +7,6 @@
 import twitter
 import os
 from datetime import datetime
-import os
 from urllib import parse as urlparse
 import psycopg2
 
@@ -88,15 +87,32 @@ def open_walden_file():
     f.close()
     return data
 
-def split_tweet(s, n):
-    for start in range(0, len(s), n):
-        yield s[start:start+n]
+def split_tweet(tw, n):
+    tweets = []
+
+    s = 0
+    e = n
+
+    while (e < len(tw)):
+        while (e > 0 and tw[e] != ' '):
+            e -= 1
+        tweets.append(tw[s:e])
+        s = e+1
+        if (e+n >= len(tw)):
+            tweets.append(tw[s:])
+            break
+        else:
+            e = s+n
+    print(tweets)
+    return tweets
 
 def post_tweet(tweet, api):
     if (len(tweet) > 139):
-        for chunk in split_tweet(tweet, 139):
-            status = api.PostUpdate(chunk)
-            print(status.text)
+        print('ok')
+        print(tweet)
+        tweets = split_tweet(tweet, 139)
+        for tweet in tweets:
+            status = api.PostUpdate(tweet)
     else:
         status = api.PostUpdate(tweet)
         print(status.text)
@@ -119,7 +135,8 @@ def main():
         tweet = data[linenum]
         api = connect_to_twitter_api()
         post_tweet(tweet, api)
-    except:
+    except (Exception) as error:
+        print(error)
         print("Failed to post tweet")
 
 main()
